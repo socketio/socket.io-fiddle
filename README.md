@@ -2,12 +2,13 @@
 # Socket.IO Fiddle
 
 ```
+$ sh generate.sh        # create self-signed certificate
 $ npm install           # install the dependencies
 $ npm start             # run the server
 $ npm run client        # run the nodejs client
 ```
 
-And point your browser to `http://localhost:3000`. Optionally, specify a port by supplying the `PORT` env variable.
+And point your browser to `https://localhost:3000`. Optionally, specify a port by supplying the `PORT` env variable.
 
 Other branches:
 
