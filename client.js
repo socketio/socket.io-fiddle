@@ -12,3 +12,7 @@ socket.on('disconnect', () => {
 socket.on('hello', (a, b, c) => {
   console.log(a, b, c);
 });
+
+socket.onAny((event) => {
+  console.log("onAny " + event);
+});

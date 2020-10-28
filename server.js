@@ -10,7 +10,9 @@ app.use(express.static(__dirname + '/public'));
 io.on('connect', socket => {
   console.log(`connect ${socket.id}`);
 
-  socket.emit('hello', 1, '2', {
+  socket.join("room1");
+
+  io.to("room1").emit('hello', 1, '2', {
     hello: 'you'
   });
 

@@ -16,4 +16,8 @@
     console.log(a, b, c);
   });
 
+  socket.onAny((event) => {
+    console.log("onAny " + event);
+  });
+
 })();
