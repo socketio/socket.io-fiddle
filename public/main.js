@@ -2,7 +2,11 @@
 
 (function() {
 
-  const socket = io();
+  const socket = io("/my-namespace", {
+    path: '/ws',
+    query: { accessToken: 'XXXX', id: 'XXXXXX' },
+    transports: ['websocket']
+  });
 
   socket.on('connect', () => {
     console.log(`connect ${socket.id}`);
