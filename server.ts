@@ -14,6 +14,8 @@ app.use(express.static(__dirname + '/public'));
 io.on('connection', (socket: Socket) => {
   console.log(`connect ${socket.id}`);
 
+  console.log(socket.handshake.headers);
+
   socket.emit('hello', 1, '2', {
     hello: 'you'
   });
