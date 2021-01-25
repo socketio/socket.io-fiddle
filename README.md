@@ -3,7 +3,7 @@
 
 ```
 $ npm install
-$ npm start # run the server
+$ npm start # run the server
 $ npm run client # run the nodejs client
 ```
 
