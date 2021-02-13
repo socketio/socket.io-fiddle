@@ -5,7 +5,30 @@
     <title>Socket.IO Fiddle</title>
   </head>
   <body>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/main.js"></script>
+    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    <script>
+      (function() {
+
+        const socket = io("http://localhost:3000");
+
+        socket.on("connect", () => {
+          console.log(`connect ${socket.id}`);
+
+          console.log("ping sent");
+          socket.emit("ping", () => {
+            console.log("ping was acknowledged");
+          });
+        });
+
+        socket.on("connect_error", (err) => {
+          console.log(`connect_error due to ${err.message}`);
+        });
+
+        socket.on("disconnect", (reason) => {
+          console.log(`disconnect due to ${reason}`);
+        });
+
+      })();
+    </script>
   </body>
 </html>
