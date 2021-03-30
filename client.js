@@ -1,5 +1,6 @@
 
-const socket = require("socket.io-client")("http://localhost:3000");
+const port = process.env.PORT || 3000;
+const socket = require("socket.io-client")(`http://localhost:${port}`);
 
 socket.on("connect", () => {
   console.log(`connect ${socket.id}`);
@@ -11,4 +12,8 @@ socket.on("connect_error", (err) => {
 
 socket.on("disconnect", (reason) => {
   console.log(`disconnect due to ${reason}`);
+});
+
+socket.on("ping", (time) => {
+  console.log(`got ping: ${time}`);
 });

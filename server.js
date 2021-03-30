@@ -2,7 +2,15 @@
 const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+
+const { createClient } = require("redis");
+const { createAdapter } = require("socket.io-redis");
+
+const pubClient = createClient();
+const subClient = createClient();
+const adapter = createAdapter({ pubClient, subClient });
+
+const io = require("socket.io")(server, { adapter });
 const port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + "/public"));
