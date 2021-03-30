@@ -1,19 +1,19 @@
-'use strict';
+"use strict";
 
 (function() {
 
   const socket = io();
 
-  socket.on('connect', () => {
+  socket.on("connect", () => {
     console.log(`connect ${socket.id}`);
   });
 
-  socket.on('disconnect', () => {
-    console.log(`disconnect ${socket.id}`);
+  socket.on("connect_error", (err) => {
+    console.log(`connect_error due to ${err.message}`);
   });
 
-  socket.on('hello', (a, b, c) => {
-    console.log(a, b, c);
+  socket.on("disconnect", (reason) => {
+    console.log(`disconnect due to ${reason}`);
   });
 
 })();

@@ -6,8 +6,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "~4.17.1",
-    "socket.io": "^3.0.4",
-    "socket.io-client": "^3.0.4",
+    "socket.io": "^4.0.0",
+    "socket.io-client": "^4.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
