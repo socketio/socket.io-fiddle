@@ -13,6 +13,8 @@ Other branches:
 
 - [TypeScript](https://github.com/socketio/socket.io-fiddle/tree/typescript)
 - [Multiple servers (with Redis adapter/emitter)](https://github.com/socketio/socket.io-fiddle/tree/multiple-servers)
+- [Example with CORS](https://github.com/socketio/socket.io-fiddle/tree/cors)
+- [Example with self-signed certificate](https://github.com/socketio/socket.io-fiddle/tree/ssl-example)
 
 ## How to report an issue
 
