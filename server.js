@@ -18,9 +18,15 @@ app.use(express.static(__dirname + "/public"));
 io.on("connection", socket => {
   console.log(`connect ${socket.id}`);
 
+  // socket.join("room1");
+
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });
 });
 
 server.listen(port, () => console.log(`server listening at http://localhost:${port}`));
+
+setInterval(() => {
+  io.to("room1").emit("ping", new Date);
+}, 1000);
