@@ -10,6 +10,10 @@ app.use(express.static(__dirname + "/public"));
 io.on("connection", socket => {
   console.log(`connect ${socket.id}`);
 
+  socket.onAny((event) => {
+    console.log("got event", event);
+  });
+
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });

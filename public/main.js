@@ -6,6 +6,7 @@
 
   socket.on("connect", () => {
     console.log(`connect ${socket.id}`);
+    socket.emit("test");
   });
 
   socket.on("connect_error", (err) => {
