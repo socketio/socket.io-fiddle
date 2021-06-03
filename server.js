@@ -1,18 +1,44 @@
+const cluster = require("cluster");
+const http = require("http");
+const Server = require("socket.io");
+const redisAdapter = require("socket.io-redis");
+const numCPUs = require("os").cpus().length;
+const { setupMaster, setupWorker } = require("@socket.io/sticky");
 
-const express = require("express");
-const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
-const port = process.env.PORT || 3000;
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-app.use(express.static(__dirname + "/public"));
-
-io.on("connection", socket => {
-  console.log(`connect ${socket.id}`);
-
-  socket.on("disconnect", (reason) => {
-    console.log(`disconnect ${socket.id} due to ${reason}`);
+  const httpServer = http.createServer();
+  setupMaster(httpServer, {
+    loadBalancingMethod: "least-connection", // either "random", "round-robin" or "least-connection"
   });
-});
+  httpServer.listen(3000);
 
-server.listen(port, () => console.log(`server listening at http://localhost:${port}`));
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", (worker) => {
+    console.log(`Worker ${worker.process.pid} died`);
+    cluster.fork();
+  });
+} else {
+  console.log(`Worker ${process.pid} started`);
+
+  const express = require("express");
+  const app = express();
+  const httpServer = http.createServer(app);
+  const io = new Server(httpServer);
+  io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
+  setupWorker(io);
+
+  app.use(express.static(__dirname + "/public"));
+
+  io.on("connection", socket => {
+    console.log(`connect ${socket.id}`);
+
+    socket.on("disconnect", (reason) => {
+      console.log(`disconnect ${socket.id} due to ${reason}`);
+    });
+  });
+}
