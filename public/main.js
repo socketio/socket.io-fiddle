@@ -2,7 +2,14 @@
 
 (function() {
 
-  const socket = io();
+  const socket = io({
+    query: {
+      token : "XXXX"
+    },
+    auth: {
+      token: "abc"
+    }
+  });
 
   socket.on("connect", () => {
     console.log(`connect ${socket.id}`);

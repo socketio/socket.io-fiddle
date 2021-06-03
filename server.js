@@ -9,6 +9,8 @@ app.use(express.static(__dirname + "/public"));
 
 io.on("connection", socket => {
   console.log(`connect ${socket.id}`);
+  console.log("query", socket.handshake.query);
+  console.log("auth", socket.handshake.auth);
 
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
