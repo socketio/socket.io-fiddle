@@ -1,5 +1,6 @@
 const cluster = require("cluster");
 const http = require("http");
+const fs = require("fs");
 const Server = require("socket.io");
 const redisAdapter = require("socket.io-redis");
 const numCPUs = require("os").cpus().length;
@@ -8,7 +9,11 @@ const { setupMaster, setupWorker } = require("@socket.io/sticky");
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
 
-  const httpServer = http.createServer();
+  const httpServer = require("https").createServer({
+    key: fs.readFileSync("./key.pem"),
+    cert: fs.readFileSync("./cert.pem"),
+  });
+  // const httpServer = http.createServer();
   setupMaster(httpServer, {
     loadBalancingMethod: "least-connection", // either "random", "round-robin" or "least-connection"
   });
