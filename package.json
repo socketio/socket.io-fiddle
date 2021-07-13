@@ -5,12 +5,12 @@
   "author": "Damien Arrachequesne",
   "license": "MIT",
   "dependencies": {
+    "@socket.io/redis-adapter": "^7.0.0",
     "@socket.io/redis-emitter": "^4.0.0",
     "express": "~4.17.1",
     "redis": "^3.0.2",
     "socket.io": "^4.0.0",
-    "socket.io-client": "^4.0.0",
-    "socket.io-redis": "^6.1.0"
+    "socket.io-client": "^4.0.0"
   },
   "scripts": {
     "start": "node server.js",

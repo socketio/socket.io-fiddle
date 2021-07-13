@@ -4,11 +4,11 @@ const app = express();
 const server = require("http").createServer(app);
 
 const { createClient } = require("redis");
-const { createAdapter } = require("socket.io-redis");
+const { createAdapter } = require("@socket.io/redis-adapter");
 
 const pubClient = createClient();
 const subClient = createClient();
-const adapter = createAdapter({ pubClient, subClient });
+const adapter = createAdapter(pubClient, subClient);
 
 const io = require("socket.io")(server, { adapter });
 const port = process.env.PORT || 3000;
