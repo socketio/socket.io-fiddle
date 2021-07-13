@@ -15,12 +15,11 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + "/public"));
 
-io.on("connection", socket => {
-  console.log(`connect ${socket.id}`);
+io.of(/.*/).on("connection", (socket) => {
+  const namespace = socket.nsp;
+  console.log(`connect ${socket.id} to ${socket.nsp.name}`);
 
-  socket.on("disconnect", (reason) => {
-    console.log(`disconnect ${socket.id} due to ${reason}`);
-  });
+  namespace.emit("new user", socket.id);
 });
 
 server.listen(port, () => console.log(`server listening at http://localhost:${port}`));

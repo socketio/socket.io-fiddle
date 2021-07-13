@@ -1,6 +1,7 @@
 
 const port = process.env.PORT || 3000;
-const socket = require("socket.io-client")(`http://localhost:${port}`);
+const namespace = process.env.NSP || "test";
+const socket = require("socket.io-client")(`http://localhost:${port}/${namespace}`);
 
 socket.on("connect", () => {
   console.log(`connect ${socket.id}`);
@@ -14,6 +15,6 @@ socket.on("disconnect", (reason) => {
   console.log(`disconnect due to ${reason}`);
 });
 
-socket.on("ping", (time) => {
-  console.log(`got ping: ${time}`);
+socket.on("new user", (id) => {
+  console.log(`new user: ${id}`);
 });
