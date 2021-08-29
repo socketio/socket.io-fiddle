@@ -13,6 +13,15 @@ io.on("connection", socket => {
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });
+
+  // socket.on('message', (...args) => {
+  //   console.log(args);  // [ 'foobar', [Function] ]
+  // });
+
+  socket.on('message', (msg, cb) => {
+    console.log(msg);  // 'foobar'
+    cb();
+  });
 });
 
 server.listen(port, () => console.log(`server listening at http://localhost:${port}`));
