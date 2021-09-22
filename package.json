@@ -1,0 +1,18 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@socket.io/redis-adapter": "^7.0.0",
+    "redis": "^3.1.2",
+    "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/redis": "^2.8.32",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "compile": "tsc"
+  }
+}
