@@ -15,6 +15,7 @@ Other branches:
 - [Multiple servers (with Redis adapter/emitter)](https://github.com/socketio/socket.io-fiddle/tree/multiple-servers)
 - [Example with CORS](https://github.com/socketio/socket.io-fiddle/tree/cors)
 - [Example with self-signed certificate](https://github.com/socketio/socket.io-fiddle/tree/ssl-example)
+- [With Vite](https://github.com/socketio/socket.io-fiddle/tree/vite)
 
 ## How to report an issue
 
