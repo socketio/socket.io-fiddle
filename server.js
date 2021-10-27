@@ -13,6 +13,10 @@ io.on("connection", socket => {
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });
+
+  setInterval(() => {
+    socket.volatile.emit("test", Buffer.from([1,2,3]));
+  }, 1000);
 });
 
 server.listen(port, () => console.log(`server listening at http://localhost:${port}`));
