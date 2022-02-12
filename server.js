@@ -1,18 +1,25 @@
+const express = require('express')
+const http = require('http')
+const { Server } = require('socket.io')
 
-const express = require("express");
-const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
-const port = process.env.PORT || 3000;
+const APP_HOST = process.env.APP_HOST || 'localhost'
+const APP_PORT = process.env.APP_PORT || 3000
 
-app.use(express.static(__dirname + "/public"));
+const app = express()
+const server = http.createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+  }
+})
 
-io.on("connection", socket => {
-  console.log(`connect ${socket.id}`);
+io.on('connect', socket => {
+  console.log('New connection ' + socket.id)
+  setTimeout(() => socket.emit('message', 'well hello there A'), 500) // STATEMENT A
+  socket.emit('message', 'well hello there B') // STATEMENT B
+})
 
-  socket.on("disconnect", (reason) => {
-    console.log(`disconnect ${socket.id} due to ${reason}`);
-  });
-});
-
-server.listen(port, () => console.log(`server listening at http://localhost:${port}`));
+server.listen(APP_PORT, APP_HOST, () => {
+  console.log(`Listening on ${APP_HOST}:${APP_PORT}`)
+})

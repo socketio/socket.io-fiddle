@@ -1,11 +1,16 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Socket.IO Fiddle</title>
-  </head>
-  <body>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.4.1/dist/socket.io.js"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      var socket = io('ws://localhost:3000');
+
+      socket.on('message', (data) => {
+        console.log(data);
+      })
+    });
+  </script>
+</head>
+<body></body>
 </html>
