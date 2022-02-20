@@ -1,13 +1,21 @@
+const { App } = require("uWebSockets.js");
+const { Server } = require("socket.io");
+const { serveDir } = require("uwebsocket-serve");
+const { resolve } = require("path");
 
-const express = require("express");
-const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
 const port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + "/public"));
+const app = new App();
 
-io.on("connection", socket => {
+const serveStatic = serveDir(resolve(__dirname, 'public'));
+
+app.get('/*', serveStatic);
+
+const io = new Server();
+
+io.attachApp(app);
+
+io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 
   socket.on("disconnect", (reason) => {
@@ -15,4 +23,10 @@ io.on("connection", socket => {
   });
 });
 
-server.listen(port, () => console.log(`server listening at http://localhost:${port}`));
+app.listen(port, (token) => {
+  if (token) {
+    console.log(`server listening at http://localhost:${port}`);
+  } else {
+    console.warn("port already in use");
+  }
+});
