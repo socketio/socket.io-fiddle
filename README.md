@@ -16,6 +16,7 @@ Other branches:
 - [Example with CORS](https://github.com/socketio/socket.io-fiddle/tree/cors)
 - [Example with self-signed certificate](https://github.com/socketio/socket.io-fiddle/tree/ssl-example)
 - [With Vite](https://github.com/socketio/socket.io-fiddle/tree/vite)
+- [With µWebSockets.js](https://github.com/socketio/socket.io-fiddle/tree/uws)
 
 ## How to report an issue
 
