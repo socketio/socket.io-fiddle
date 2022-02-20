@@ -1,5 +1,8 @@
+import { io } from "socket.io-client";
 
-const socket = require("socket.io-client")("http://localhost:3000");
+const port = process.env.PORT || 3000;
+
+const socket = io(`http://localhost:${port}`);
 
 socket.on("connect", () => {
   console.log(`connect ${socket.id}`);

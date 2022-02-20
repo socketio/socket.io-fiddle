@@ -1,13 +1,16 @@
+import { default as express } from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
-const express = require("express");
 const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const httpServer = createServer(app);
+const io = new Server(httpServer, {});
+
 const port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
 
-io.on("connection", socket => {
+io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 
   socket.on("disconnect", (reason) => {
@@ -15,4 +18,6 @@ io.on("connection", socket => {
   });
 });
 
-server.listen(port, () => console.log(`server listening at http://localhost:${port}`));
+httpServer.listen(port, () => {
+  console.log(`server listening at http://localhost:${port}`);
+});
