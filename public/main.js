@@ -16,4 +16,8 @@
     console.log(`disconnect due to ${reason}`);
   });
 
+  socket.on("socket-id", (data) => {
+    console.log(data);
+  });
+
 })();

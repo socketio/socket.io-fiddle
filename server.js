@@ -11,6 +11,8 @@ const port = process.env.PORT || 3000;
 app.use(express.static("public"));
 
 io.on("connection", (socket) => {
+  io.to(socket.id).emit("socket-id",socket.id);
+
   console.log(`connect ${socket.id}`);
 
   socket.on("disconnect", (reason) => {
