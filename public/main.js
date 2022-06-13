@@ -2,7 +2,9 @@
 
 (function() {
 
-  const socket = io();
+  const socket = io({
+    path: "/custom-path/"
+  });
 
   socket.on("connect", () => {
     console.log(`connect ${socket.id}`);
