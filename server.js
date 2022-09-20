@@ -1,10 +1,22 @@
 import { default as express } from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { createClient } from "redis";
+import { createAdapter } from "@socket.io/redis-adapter";
+
+const pubClient = createClient();
+const subClient = pubClient.duplicate();
+
+await Promise.all([
+  pubClient.connect(),
+  subClient.connect()
+]);
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {});
+const io = new Server(httpServer, {
+  adapter: createAdapter(pubClient, subClient)
+});
 
 const port = process.env.PORT || 3000;
 
