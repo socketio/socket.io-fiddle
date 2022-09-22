@@ -13,6 +13,18 @@ app.use(express.static("public"));
 io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 
+  socket.on("join:room", (data) => {
+    console.log(`Joined room: ${data.roomId}`);
+
+    socket.join(data.roomId);
+  });
+
+  socket.on("text:insert", (data) => {
+    console.log(`Text inserted: ${data.roomId}`);
+
+    socket.to(data.roomId).emit("text:inserted", data);
+  });
+
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });

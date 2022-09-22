@@ -5,7 +5,7 @@
   <title>Socket.IO Fiddle</title>
 </head>
 <body>
-<h1>Index</h1>
+<h1>Page 2</h1>
 
 <a href="index.html">Index</a>
 <a href="page1.html">Page 1</a>
@@ -25,7 +25,7 @@
   const socket = io();
 
   socket.emit("join:room", {
-    roomId: "index"
+    roomId: "page2"
   });
 
   socket.on("text:inserted", ({ text }) => {
@@ -36,7 +36,7 @@
 
   sendButton.addEventListener("click", () => {
     socket.emit("text:insert", {
-      roomId: "index",
+      roomId: "page2",
       text: "hello " + new Date().toISOString()
     });
   });
