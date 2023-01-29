@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  server1:
+    build: .
+    links:
+      - mongo
+    ports:
+      - "3000:3000"
+
+  server2:
+    build: .
+    links:
+      - mongo
+    ports:
+      - "3001:3000"
+
+  mongo:
+    image: mongo:4.4
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    # you'll need to run "rs.initiate()" on the node (https://docs.mongodb.com/manual/tutorial/convert-standalone-to-replica-set/)
+    ports:
+      - "27017:27017"
