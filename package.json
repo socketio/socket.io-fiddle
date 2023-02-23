@@ -1,0 +1,17 @@
+{
+  "name": "socket.io-fiddle",
+  "version": "0.0.1",
+  "description": "Simple fiddle for socket.io",
+  "private": true,
+  "author": "Damien Arrachequesne",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^29.4.3",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
