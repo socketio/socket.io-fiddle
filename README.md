@@ -17,6 +17,7 @@ Other branches:
 - [Example with self-signed certificate](https://github.com/socketio/socket.io-fiddle/tree/ssl-example)
 - [With Vite](https://github.com/socketio/socket.io-fiddle/tree/vite)
 - [With µWebSockets.js](https://github.com/socketio/socket.io-fiddle/tree/uws)
+- [With PM2](https://github.com/socketio/socket.io-fiddle/tree/pm2)
 
 ## How to report an issue
 
