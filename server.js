@@ -1,12 +1,16 @@
 import { default as express } from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/cluster-adapter";
+import { setupWorker } from "@socket.io/sticky";
 
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {});
 
-const port = process.env.PORT || 3000;
+io.adapter(createAdapter());
+
+setupWorker(io);
 
 app.use(express.static("public"));
 
@@ -16,8 +20,4 @@ io.on("connection", (socket) => {
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });
-});
-
-httpServer.listen(port, () => {
-  console.log(`server listening at http://localhost:${port}`);
 });

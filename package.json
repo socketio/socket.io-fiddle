@@ -6,12 +6,13 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@socket.io/pm2": "^5.2.2",
     "express": "~4.17.1",
     "socket.io": "^4.0.0",
     "socket.io-client": "^4.0.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "pm2 start ecosystem.config.cjs",
     "client": "node client.js"
   }
 }
