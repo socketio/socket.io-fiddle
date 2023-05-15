@@ -10,6 +10,10 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 
+for (let i = 1; i <= 20; i++) {
+  io.of(`/namespace${i}`);
+}
+
 io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 
