@@ -6,9 +6,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@socket.io/redis-adapter": "^8.2.1",
+    "@socket.io/sticky": "^1.0.3",
     "express": "~4.17.1",
-    "socket.io": "^4.0.0",
-    "socket.io-client": "^4.0.0"
+    "redis": "^4.6.7",
+    "socket.io": "^4.6.2",
+    "socket.io-client": "^4.6.2"
   },
   "scripts": {
     "start": "node server.js",
