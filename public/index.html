@@ -7,5 +7,17 @@
   <body>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/main.js"></script>
+
+    <script>
+      function download() {
+        const a = document.createElement('a');
+        a.href = "/socket.io/socket.io.js";
+        a.download = `socket.io.js`;
+        a.click();
+        a.remove();
+      }
+    </script>
+
+    <button onclick="download();">click me</button>
   </body>
 </html>
