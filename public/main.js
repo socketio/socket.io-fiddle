@@ -16,4 +16,11 @@
     console.log(`disconnect due to ${reason}`);
   });
 
+  function myListener() {
+    console.log("got ping!");
+    socket.removeListener("ping", myListener);
+  }
+
+  socket.on("ping", myListener);
+
 })();

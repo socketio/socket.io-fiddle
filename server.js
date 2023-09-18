@@ -18,6 +18,10 @@ io.on("connection", (socket) => {
   });
 });
 
+setInterval(() => {
+  io.emit("ping");
+}, 1000);
+
 httpServer.listen(port, () => {
   console.log(`server listening at http://localhost:${port}`);
 });
