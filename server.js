@@ -1,10 +1,13 @@
 import { default as express } from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import parser from "socket.io-msgpack-parser";
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {});
+const io = new Server(httpServer, {
+  parser
+});
 
 const port = process.env.PORT || 3000;
 
