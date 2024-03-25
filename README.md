@@ -18,6 +18,7 @@ Other branches:
 - [With Vite](https://github.com/socketio/socket.io-fiddle/tree/vite)
 - [With µWebSockets.js](https://github.com/socketio/socket.io-fiddle/tree/uws)
 - [With PM2](https://github.com/socketio/socket.io-fiddle/tree/pm2)
+- [With nginx](https://github.com/socketio/socket.io-fiddle/tree/nginx)
 
 ## How to report an issue
 
