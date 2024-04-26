@@ -35,6 +35,10 @@
         transportSpan.innerText = "N/A";
         console.log(`disconnect due to ${reason}`);
       });
+
+      socket.on("hello", () => {
+        console.log("got 'hello'");
+      });
     </script>
   </body>
 </html>

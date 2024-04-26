@@ -25,6 +25,12 @@ const io = new Server(httpServer, {});
 io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 
+  const a = "hello";
+  const b = "world";
+
+  socket.join(`${a} ${b}`);
+  io.to(`${a} ${b}`).emit("hello");
+
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });
