@@ -35,6 +35,11 @@
         transportSpan.innerText = "N/A";
         console.log(`disconnect due to ${reason}`);
       });
+
+      window.addEventListener("beforeunload", () => {
+        console.log("beforeunload");
+        socket.emit("bye");
+      });
     </script>
   </body>
 </html>

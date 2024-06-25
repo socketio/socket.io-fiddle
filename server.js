@@ -25,6 +25,10 @@ const io = new Server(httpServer, {});
 io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 
+  socket.on("bye", () => {
+    console.log("received 'bye'");
+  });
+
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });
