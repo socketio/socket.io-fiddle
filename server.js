@@ -25,6 +25,14 @@ const io = new Server(httpServer, {});
 io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 
+  socket.onAny((ev) => {
+    console.log("onAny", ev);
+  });
+
+  socket.on("event", () => {
+    console.log("onevent");
+  });
+
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });

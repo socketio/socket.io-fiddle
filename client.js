@@ -6,6 +6,11 @@ const socket = io(`http://localhost:${port}`);
 
 socket.on("connect", () => {
   console.log(`connect ${socket.id}`);
+
+  setTimeout(() => {
+    socket.emit("event", "hello");
+    socket.disconnect();
+  }, 500);
 });
 
 socket.on("connect_error", (err) => {
