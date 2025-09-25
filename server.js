@@ -1,6 +1,8 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { Server } from "socket.io";
+import { createClient } from "redis";
+import { createAdapter } from "@socket.io/redis-streams-adapter";
 
 const port = process.env.PORT || 3000;
 
@@ -20,7 +22,28 @@ const httpServer = createServer(async (req, res) => {
   res.end(content);
 });
 
-const io = new Server(httpServer, {});
+const redisClient = createClient({ url: "redis://localhost:6379" });
+// const redisClient = createClient({ url: "redis://localhost:6389" }); // with Valkey
+
+redisClient.on("error", (err) => {
+  // ignore connection errors
+})
+
+await redisClient.connect();
+
+const io = new Server(httpServer, {
+  adapter: createAdapter(redisClient)
+});
+
+setInterval(async () => {
+  try {
+    const sockets = await io.fetchSockets();
+
+    console.log(`# of connected sockets: cluster = ${sockets.length} local = ${io.of("/").sockets.size}`);
+  } catch (e) {
+    console.log("fetchSockets error");
+  }
+}, 5000)
 
 io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);

@@ -1,0 +1,10 @@
+services:
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
+
+  valkey:
+    image: valkey/valkey:8
+    ports:
+      - "6389:6379"

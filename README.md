@@ -2,26 +2,16 @@
 # Socket.IO Fiddle
 
 ```
-$ npm install           # install the dependencies
-$ npm start             # run the server
-$ npm run client        # run the nodejs client
+$ docker compose up -d
+$ npm install
+$ DEBUG=socket.io-adapter PORT=3000 node server.js
+$ PORT=3001 node server.js
 ```
 
-And point your browser to `http://localhost:3000`. Optionally, specify a port by supplying the `PORT` env variable.
+You can then open http://localhost:3000 and http://localhost:3001 in your browser to create client connections.
 
-Other branches:
+To stop the Redis server:
 
-- [TypeScript](https://github.com/socketio/socket.io-fiddle/tree/typescript)
-- [Multiple servers (with Redis adapter/emitter)](https://github.com/socketio/socket.io-fiddle/tree/multiple-servers)
-- [Example with CORS](https://github.com/socketio/socket.io-fiddle/tree/cors)
-- [Example with self-signed certificate](https://github.com/socketio/socket.io-fiddle/tree/ssl-example)
-- [With Vite](https://github.com/socketio/socket.io-fiddle/tree/vite)
-- [With µWebSockets.js](https://github.com/socketio/socket.io-fiddle/tree/uws)
-- [With PM2](https://github.com/socketio/socket.io-fiddle/tree/pm2)
-- [With nginx](https://github.com/socketio/socket.io-fiddle/tree/nginx)
-
-## How to report an issue
-
-Please fork this project, edit it to reproduce the incorrect behavior and link it in the discussion [here](https://github.com/socketio/socket.io/discussions/new).
-
-This is really important for us to be able to help you. Thanks!
+```
+$ docker compose stop redis
+```
